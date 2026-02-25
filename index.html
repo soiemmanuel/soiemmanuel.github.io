@@ -4,144 +4,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gold Soccer - Premium Sports Apps</title>
+    <title>Soi Emmanuel | Premium App Development Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2E7D32;
-            --secondary-color: #1B5E20;
-            --text-color: #333;
-            --bg-color: #f4f4f4;
+            --bg: #0A0A0B;
+            --surface: #121214;
+            --primary: #10B981;
+            /* Emerald Green */
+            --primary-light: #34D399;
+            --text: #F9FAFB;
+            --text-dim: #9CA3AF;
+            --border: #1F2937;
+            --accent: #8B5CF6;
+            /* Purple accent like the portfolio */
+            --gradient: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
+            overflow-x: hidden;
         }
 
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
         }
 
         .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        .app-showcase {
+        /* Navigation */
+        nav {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
             text-align: center;
-            margin-bottom: 3rem;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--primary-light);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
         }
 
         .btn {
             display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--bg);
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
         }
 
         .btn:hover {
-            background: var(--secondary-color);
+            transform: translateY(-2px);
+            background: var(--primary-light);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
         }
 
-        h2 {
-            color: var(--primary-color);
-            border-left: 5px solid var(--primary-color);
-            padding-left: 1rem;
-            margin-top: 2rem;
-        }
-
-        footer {
+        /* Apps Grid */
+        .section-title {
             text-align: center;
-            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 8rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .card-link {
+            color: var(--primary);
+            text-decoration: none;
             font-size: 0.9rem;
-            color: #666;
+            font-weight: 600;
         }
 
-        .nav-links {
-            margin-top: 1rem;
+        /* Experience Section */
+        .experience {
+            background: var(--surface);
+            padding: 6rem 0;
+            margin-bottom: 8rem;
+            border-radius: 2rem;
         }
 
-        .nav-links a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: underline;
+        .exp-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        .exp-item h4 {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-item p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-links {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .copyright {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exp-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>Gold Soccer</h1>
-        <p>Premium sports tracking and live score experiences.</p>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </header>
-
     <div class="container">
-        <section id="about" class="app-showcase">
-            <h2>Our Featured App: Gold Live Score</h2>
-            <p>Experience real-time soccer updates with lightning speed and premium aesthetics.</p>
-            <a href="https://play.google.com/store/apps/details?id=com.soiemmanuel.goldsoccer" class="btn">Get it on
-                Google Play</a>
+        <nav>
+            <div class="logo">Soi Emmanuel</div>
+            <div class="nav-links">
+                <a href="#apps">Applications</a>
+                <a href="#about">About</a>
+                <a href="mailto:support@goldsoccer.com">Contact</a>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <span class="badge">Ship your MVP in weeks</span>
+            <h1>Turning Complex Ideas into Premium Apps</h1>
+            <p>Senior Developer specializing in Bubble.io and Mobile development. Creating intuitive experiences for
+                thousands of users.</p>
+            <a href="mailto:support@goldsoccer.com" class="btn">Start Your Project</a>
+        </header>
+
+        <section id="apps" class="section-title">
+            <h2>Featured Applications</h2>
+            <p>A look at the products I've built and scaled.</p>
         </section>
 
-        <section id="privacy">
-            <h2>Privacy Policy</h2>
-            <p>Last updated: January 2026</p>
-            <p>This Privacy Policy applies to the <strong>Gold Soccer Live Score</strong> app (hereby referred to as
-                "Application") created by the developer (hereby referred to as "Service Provider") as a Free service.
-            </p>
+        <div class="grid">
+            <!-- Gold Soccer -->
+            <div class="card">
+                <div class="card-icon">⚽</div>
+                <h3>Gold Live Score</h3>
+                <p>Lightning-fast real-time scores and sports updates. Integrated with Google AdMob for monetization.
+                </p>
+                <div class="card-footer">
+                    <span class="card-tag">Flutter • Mobile</span>
+                    <a href="https://play.google.com/store/apps/details?id=com.soiemmanuel.goldsoccer"
+                        class="card-link">View App →</a>
+                </div>
+            </div>
 
-            <h3>Information Collection and Use</h3>
-            <p>The Application collects information when you download and use it. This may include IP addresses, page
-                interactions, and device operating system information for analytics and service improvement.</p>
-            <p>The Application utilizes third-party services that have their own Privacy Policies. Below are the links
-                to the service providers used:</p>
-            <ul>
-                <li><a href="https://www.google.com/policies/privacy/" target="_blank">Google Play Services</a></li>
-                <li><a href="https://support.google.com/admob/answer/6128543?hl=en" target="_blank">AdMob</a></li>
-            </ul>
+            <!-- HousingBase -->
+            <div class="card">
+                <div class="card-icon">🏠</div>
+                <h3>HousingBase</h3>
+                <p>Specialized platform helping home seekers discover their ideal properties effortlessly.</p>
+                <div class="card-footer">
+                    <span class="card-tag">Marketplace • Web</span>
+                    <a href="https://housingbasesanantonio.com/" class="card-link">Visit Site →</a>
+                </div>
+            </div>
 
-            <h3>Data Retention and Safety</h3>
-            <p>We do not use the Application to knowingly solicit data from or market to children under the age of 13.
-                We provide physical, electronic, and procedural safeguards to protect the information we process.</p>
+            <!-- Hustlehawks -->
+            <div class="card">
+                <div class="card-icon">🦅</div>
+                <h3>Hustlehawks</h3>
+                <p>A dynamic marketplace connecting reliable errand-runners with users who need things done.</p>
+                <div class="card-footer">
+                    <span class="card-tag">Service • Platform</span>
+                    <a href="https://hustlehawks.com/" class="card-link">Visit Site →</a>
+                </div>
+            </div>
 
-            <h2 id="contact">Contact Us</h2>
-            <p>If you have any questions regarding privacy or our applications, please contact: <br>
-                <strong>Email:</strong> support@goldsoccer.com
-            </p>
+            <!-- Kulaa -->
+            <div class="card">
+                <div class="card-icon">🍔</div>
+                <h3>Kulaa</h3>
+                <p>Social discovery app for foodies to share experiences and top-rated culinary spots.</p>
+                <div class="card-footer">
+                    <span class="card-tag">Social • Mobile</span>
+                    <a href="https://app.kulaa.co.uk/" class="card-link">Visit App →</a>
+                </div>
+            </div>
+        </div>
+
+        <section id="about" class="experience">
+            <div class="container exp-content">
+                <h2>Expertise & Workflow</h2>
+                <div class="exp-grid">
+                    <div class="exp-item">
+                        <h4>Full-Stack Speed</h4>
+                        <p>Experienced in high-velocity MVP development using Bubble.io and Flutter.</p>
+                    </div>
+                    <div class="exp-item">
+                        <h4>Intuitive UI/UX</h4>
+                        <p>Focusing on responsiveness and user-centric design that feels premium.</p>
+                    </div>
+                    <div class="exp-item">
+                        <h4>Complex Integration</h4>
+                        <p>Deep knowledge in API integrations, database structures, and monetization.</p>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <footer>
+            <div class="logo footer-logo">Soi Emmanuel</div>
+            <div class="footer-links">
+                <a href="https://soiemmanuel.github.io/gold_soccer_privacy_policy/">Gold Soccer Privacy</a>
+                <a href="#about">About</a>
+                <a href="mailto:support@goldsoccer.com">Support</a>
+            </div>
+            <p class="copyright">&copy; 2026 Soi Emmanuel. Empowering founders with high-quality software.</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>&copy; 2026 Gold Soccer Development. All rights reserved.</p>
-    </footer>
 </body>
 
 </html>
