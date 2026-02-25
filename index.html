@@ -4,47 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soi Emmanuel | Premium App Development Studio</title>
+    <title>Soi Emmanuel | Premier MVP & Mobile App Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;900&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg: #0A0A0B;
-            --surface: #121214;
-            --primary: #10B981;
-            /* Emerald Green */
-            --primary-light: #34D399;
-            --text: #F9FAFB;
-            --text-dim: #9CA3AF;
-            --border: #1F2937;
-            --accent: #8B5CF6;
-            /* Purple accent like the portfolio */
-            --gradient: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%);
+            --bg: #050506;
+            --surface: rgba(18, 18, 22, 0.7);
+            --surface-solid: #121216;
+            --primary: #d946ef;
+            /* Fuchsia */
+            --primary-glow: rgba(217, 70, 239, 0.15);
+            --secondary: #a855f7;
+            /* Purple */
+            --text: #ffffff;
+            --text-dim: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --accent-gradient: linear-gradient(135deg, #d946ef 0%, #a855f7 100%);
+            --glass: blur(16px) saturate(180%);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
             overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(217, 70, 239, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
         }
 
         h1,
         h2,
         h3,
-        h4 {
+        .heading {
             font-family: 'Outfit', sans-serif;
-            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .container {
@@ -53,357 +58,634 @@
             padding: 0 1.5rem;
         }
 
-        /* Navigation */
+        /* Nav */
         nav {
-            padding: 1.5rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 6, 0.8);
+            backdrop-filter: var(--glass);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 0;
+        }
+
+        .nav-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10, 10, 11, 0.8);
-            backdrop-filter: blur(10px);
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            background: var(--gradient);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
             color: var(--text-dim);
             text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--text);
+            color: var(--primary);
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 8rem 0 6rem;
-            text-align: center;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            color: var(--primary-light);
+        .btn-sm {
+            padding: 0.6rem 1.2rem;
             border-radius: 999px;
-            font-size: 0.8rem;
+            background: var(--accent-gradient);
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 0 6rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.85rem;
             font-weight: 600;
+            color: var(--primary);
             margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 2rem;
+            background: linear-gradient(180deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
+            font-size: 1.35rem;
             color: var(--text-dim);
-            font-size: 1.25rem;
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--primary);
-            color: var(--bg);
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn-main {
+            padding: 1.25rem 2.5rem;
+            background: var(--accent-gradient);
+            border-radius: 1rem;
+            font-weight: 800;
+            color: white;
             text-decoration: none;
-            border-radius: 0.75rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+            box-shadow: 0 20px 40px var(--primary-glow);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            background: var(--primary-light);
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
+        .btn-secondary {
+            padding: 1.25rem 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 8rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .stat-item p {
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Section Heads */
+        .section-head {
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .section-head span {
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .section-head h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
         }
 
         /* Apps Grid */
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .grid {
+        .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 8rem;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 10rem;
         }
 
-        .card {
+        .app-card {
             background: var(--surface);
+            backdrop-filter: var(--glass);
             border: 1px solid var(--border);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 1rem;
+            border-radius: 2rem;
+            padding: 3rem;
+            transition: all 0.4s;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            font-size: 1.5rem;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .card h3 {
-            font-size: 1.5rem;
+        .app-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--primary);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .app-card h3 {
+            font-size: 1.75rem;
             margin-bottom: 1rem;
         }
 
-        .card p {
+        .app-card p {
             color: var(--text-dim);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
         }
 
-        .card-footer {
+        .app-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
         }
 
-        .card-tag {
-            font-size: 0.75rem;
-            color: var(--text-dim);
+        .tag {
             background: rgba(255, 255, 255, 0.05);
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-dim);
         }
 
-        .card-link {
+        .app-link {
             color: var(--primary);
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        /* Experience Section */
-        .experience {
-            background: var(--surface);
-            padding: 6rem 0;
-            margin-bottom: 8rem;
-            border-radius: 2rem;
+        /* Process */
+        .process {
+            background: var(--surface-solid);
+            padding: 8rem 0;
+            border-radius: 4rem;
+            margin-bottom: 10rem;
         }
 
-        .exp-content {
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .step-num {
+            font-size: 5rem;
+            font-weight: 900;
+            opacity: 0.1;
+            position: absolute;
+            top: -2rem;
+            left: -1rem;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .step p {
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Skills Matrix */
+        .skills-section {
+            padding-bottom: 10rem;
+        }
+
+        .skills-grid {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 1.25rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--primary);
+            background: var(--primary-glow);
+            transform: scale(1.05);
+        }
+
+        /* Pricing & Booking */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 10rem;
+        }
+
+        .price-card {
+            background: var(--surface);
+            padding: 3.5rem;
+            border-radius: 2.5rem;
+            border: 1px solid var(--border);
             text-align: center;
         }
 
-        .exp-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
-            width: 100%;
+        .price-card.featured {
+            border-color: var(--primary);
+            background: radial-gradient(circle at top right, rgba(217, 70, 239, 0.05), transparent);
+            transform: scale(1.05);
         }
 
-        .exp-item h4 {
-            font-size: 1.1rem;
-            color: var(--text);
-            margin-bottom: 0.5rem;
+        .price-val {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 1.5rem 0;
         }
 
-        .exp-item p {
+        .price-val span {
+            font-size: 1rem;
             color: var(--text-dim);
-            font-size: 0.9rem;
         }
 
-        /* Footer */
+        .price-features {
+            list-style: none;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 1rem;
+            color: var(--text-dim);
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .price-features li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        /* Footer & Contact */
         footer {
-            padding: 4rem 0;
+            padding: 10rem 0 4rem;
             border-top: 1px solid var(--border);
             text-align: center;
         }
 
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: block;
+        .contact-cta {
+            margin-bottom: 6rem;
         }
 
-        .footer-links {
-            margin-bottom: 2rem;
-        }
+        @media (max-width: 992px) {
 
-        .footer-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            margin: 0 1rem;
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--text);
-        }
-
-        .copyright {
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
-
-        @media (max-width: 768px) {
-            .grid {
+            .pricing-grid,
+            .process-steps,
+            .stats {
                 grid-template-columns: 1fr;
-            }
-
-            .exp-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 4rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <nav>
+    <nav>
+        <div class="container nav-inner">
             <div class="logo">Soi Emmanuel</div>
             <div class="nav-links">
-                <a href="#apps">Applications</a>
-                <a href="#about">About</a>
-                <a href="mailto:support@goldsoccer.com">Contact</a>
+                <a href="#projects">Portfolio</a>
+                <a href="#process">Process</a>
+                <a href="#services">Services</a>
+                <a href="#book" class="btn-sm">Book a Call</a>
             </div>
-        </nav>
+        </div>
+    </nav>
 
+    <div class="container">
         <header class="hero">
-            <span class="badge">Ship your MVP in weeks</span>
-            <h1>Turning Complex Ideas into Premium Apps</h1>
-            <p>Senior Developer specializing in Bubble.io and Mobile development. Creating intuitive experiences for
-                thousands of users.</p>
-            <a href="mailto:support@goldsoccer.com" class="btn">Start Your Project</a>
+            <div class="hero-badge">Certified Bubble.io & Mobile Expert</div>
+            <h1>Ideate. Build. Scale. <br> In Weeks, Not Months.</h1>
+            <p>Senior Developer specializing in high-velocity MVP builds and App Rescues. I help founders ship premium
+                software using No-code, AI, and Native technologies.</p>
+            <div class="hero-btns">
+                <a href="#book" class="btn-main">Get a Free Estimate</a>
+                <a href="#projects" class="btn-secondary">View Showcase</a>
+            </div>
         </header>
 
-        <section id="apps" class="section-title">
-            <h2>Featured Applications</h2>
-            <p>A look at the products I've built and scaled.</p>
+        <section class="stats">
+            <div class="stat-item">
+                <h3>60+</h3>
+                <p>Apps Launched</p>
+            </div>
+            <div class="stat-item">
+                <h3>3-6w</h3>
+                <p>Delivery Speed</p>
+            </div>
+            <div class="stat-item">
+                <h3>7+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Client Satisfaction</p>
+            </div>
         </section>
 
-        <div class="grid">
+        <section id="projects" class="section-head">
+            <span>Portfolio Showcase</span>
+            <h2>Proven Products</h2>
+        </section>
+
+        <div class="apps-grid">
             <!-- Gold Soccer -->
-            <div class="card">
-                <div class="card-icon">⚽</div>
-                <h3>Gold Live Score</h3>
-                <p>Lightning-fast real-time scores and sports updates. Integrated with Google AdMob for monetization.
-                </p>
-                <div class="card-footer">
-                    <span class="card-tag">Flutter • Mobile</span>
+            <div class="app-card">
+                <div>
+                    <span class="app-icon">⚽</span>
+                    <h3>Gold Live Score</h3>
+                    <p>Real-time sports tracking and live score analytics with custom AdMob integration and
+                        high-performance backend.</p>
+                </div>
+                <div class="app-meta">
+                    <span class="tag">Flutter • Firebase</span>
                     <a href="https://play.google.com/store/apps/details?id=com.soiemmanuel.goldsoccer"
-                        class="card-link">View App →</a>
+                        class="app-link">View Store →</a>
                 </div>
             </div>
 
             <!-- HousingBase -->
-            <div class="card">
-                <div class="card-icon">🏠</div>
-                <h3>HousingBase</h3>
-                <p>Specialized platform helping home seekers discover their ideal properties effortlessly.</p>
-                <div class="card-footer">
-                    <span class="card-tag">Marketplace • Web</span>
-                    <a href="https://housingbasesanantonio.com/" class="card-link">Visit Site →</a>
+            <div class="app-card">
+                <div>
+                    <span class="app-icon">🏠</span>
+                    <h3>HousingBase</h3>
+                    <p>Comprehensive Real Estate marketplace built for hyper-responsive property discovery and lead
+                        management.</p>
+                </div>
+                <div class="app-meta">
+                    <span class="tag">Bubble • Web</span>
+                    <a href="https://housingbasesanantonio.com/" class="app-link">Visit Site →</a>
                 </div>
             </div>
 
             <!-- Hustlehawks -->
-            <div class="card">
-                <div class="card-icon">🦅</div>
-                <h3>Hustlehawks</h3>
-                <p>A dynamic marketplace connecting reliable errand-runners with users who need things done.</p>
-                <div class="card-footer">
-                    <span class="card-tag">Service • Platform</span>
-                    <a href="https://hustlehawks.com/" class="card-link">Visit Site →</a>
+            <div class="app-card">
+                <div>
+                    <span class="app-icon">🦅</span>
+                    <h3>Hustlehawks</h3>
+                    <p>Marketplace platform connecting users with errands specialists. Complex logic and worker-matching
+                        algorithms.</p>
+                </div>
+                <div class="app-meta">
+                    <span class="tag">Bubble • Platform</span>
+                    <a href="https://hustlehawks.com/" class="app-link">Visit Site →</a>
+                </div>
+            </div>
+
+            <!-- Mech-Xpress -->
+            <div class="app-card">
+                <div>
+                    <span class="app-icon">🔧</span>
+                    <h3>Mech-Xpress</h3>
+                    <p>Auto-repair marketplace for the Kenyan market. Seamlessly connecting car owners with vetted
+                        mechanics.</p>
+                </div>
+                <div class="app-meta">
+                    <span class="tag">Bubble • Mobile App</span>
+                    <a href="#" class="app-link">Coming Soon →</a>
+                </div>
+            </div>
+
+            <!-- Good-Pace -->
+            <div class="app-card">
+                <div>
+                    <span class="app-icon">🎨</span>
+                    <h3>Good-Pace Design</h3>
+                    <p>AI-powered branding engine. Leverages Google Gemini for instant logo creation and identity
+                        generation.</p>
+                </div>
+                <div class="app-meta">
+                    <span class="tag">TypeScript • AI Studio</span>
+                    <a href="#" class="app-link">Repo →</a>
                 </div>
             </div>
 
             <!-- Kulaa -->
-            <div class="card">
-                <div class="card-icon">🍔</div>
-                <h3>Kulaa</h3>
-                <p>Social discovery app for foodies to share experiences and top-rated culinary spots.</p>
-                <div class="card-footer">
-                    <span class="card-tag">Social • Mobile</span>
-                    <a href="https://app.kulaa.co.uk/" class="card-link">Visit App →</a>
+            <div class="app-card">
+                <div>
+                    <span class="app-icon">🍔</span>
+                    <h3>Kulaa</h3>
+                    <p>Social review platform for foodies. Features geo-discovery, dish sharing, and influencer hotel
+                        ratings.</p>
+                </div>
+                <div class="app-meta">
+                    <span class="tag">Bubble • API Bridge</span>
+                    <a href="https://app.kulaa.co.uk/" class="app-link">Open App →</a>
                 </div>
             </div>
         </div>
 
-        <section id="about" class="experience">
-            <div class="container exp-content">
-                <h2>Expertise & Workflow</h2>
-                <div class="exp-grid">
-                    <div class="exp-item">
-                        <h4>Full-Stack Speed</h4>
-                        <p>Experienced in high-velocity MVP development using Bubble.io and Flutter.</p>
+        <section id="process" class="process">
+            <div class="container">
+                <div class="section-head">
+                    <span>The Workflow</span>
+                    <h2>From Idea to Launch</h2>
+                </div>
+                <div class="process-steps">
+                    <div class="step">
+                        <span class="step-num">01</span>
+                        <h4>Audit & Clarity</h4>
+                        <p>We break down your idea, identify core user flows, and define the MVP scope to ensure we
+                            build what matters.</p>
                     </div>
-                    <div class="exp-item">
-                        <h4>Intuitive UI/UX</h4>
-                        <p>Focusing on responsiveness and user-centric design that feels premium.</p>
+                    <div class="step">
+                        <span class="step-num">02</span>
+                        <h4>Vibe & Build</h4>
+                        <p>High-intensity development phase using the modern "Vibe Coding" approach and premium UI/UX
+                            standards.</p>
                     </div>
-                    <div class="exp-item">
-                        <h4>Complex Integration</h4>
-                        <p>Deep knowledge in API integrations, database structures, and monetization.</p>
+                    <div class="step">
+                        <span class="step-num">03</span>
+                        <h4>Deploy & Scale</h4>
+                        <p>End-to-end launch on Play Store, App Store, or Custom Domains with live monitoring and AdMob
+                            setup.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer>
-            <div class="logo footer-logo">Soi Emmanuel</div>
-            <div class="footer-links">
-                <a href="https://soiemmanuel.github.io/gold_soccer_privacy_policy/">Gold Soccer Privacy</a>
-                <a href="#about">About</a>
-                <a href="mailto:support@goldsoccer.com">Support</a>
+        <section id="services" class="section-head">
+            <span>Specializations</span>
+            <h2>My Core Stack</h2>
+        </section>
+
+        <div class="skills-section">
+            <div class="skills-grid">
+                <span class="skill-tag">Bubble.io Expert</span>
+                <span class="skill-tag">FlutterFlow Expert</span>
+                <span class="skill-tag">Flutter & Dart</span>
+                <span class="skill-tag">Loveable / Pad</span>
+                <span class="skill-tag">Make / Zapier / n8n</span>
+                <span class="skill-tag">Supabase</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">Neon DB / PostgreSQL</span>
+                <span class="skill-tag">Cloud Functions</span>
+                <span class="skill-tag">AWS Lambda</span>
+                <span class="skill-tag">PHP / JS / HTML / CSS</span>
+                <span class="skill-tag">Airtable</span>
+                <span class="skill-tag">Vibe Coding</span>
+                <span class="skill-tag">Plugin Development</span>
             </div>
-            <p class="copyright">&copy; 2026 Soi Emmanuel. Empowering founders with high-quality software.</p>
+        </div>
+
+        <section id="book" class="section-head">
+            <span>Services</span>
+            <h2>Work with Me</h2>
+        </section>
+
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Consultation</h3>
+                <div class="price-val">$25 <span>/ 30 min</span></div>
+                <ul class="price-features">
+                    <li>Technical Roadmap</li>
+                    <li>Architecture Review</li>
+                    <li>MVP Feasibility</li>
+                </ul>
+                <a href="https://calendly.com/soiemmanuel/30min" class="btn-secondary">Book Now</a>
+            </div>
+
+            <div class="price-card featured">
+                <h3>Bubble Rescue</h3>
+                <div class="price-val">$2,500 <span>+</span></div>
+                <ul class="price-features">
+                    <li>Database Refactor</li>
+                    <li>Performance Audit</li>
+                    <li>Bugs Suppression</li>
+                    <li>UI Refresh</li>
+                </ul>
+                <a href="mailto:support@goldsoccer.com" class="btn-main">Scale My App</a>
+            </div>
+
+            <div class="price-card">
+                <h3>Custom MVP</h3>
+                <div class="price-val">$5,000 <span>+</span></div>
+                <ul class="price-features">
+                    <li>From scratch design</li>
+                    <li>Full Backend setup</li>
+                    <li>Third-party APIs</li>
+                    <li>Play Store Launch</li>
+                </ul>
+                <a href="mailto:support@goldsoccer.com" class="btn-secondary">Start Building</a>
+            </div>
+        </div>
+
+        <footer>
+            <div class="contact-cta">
+                <h2 class="heading" style="font-size: 3rem; margin-bottom: 2rem;">Ready to bring your project to life?
+                </h2>
+                <p style="color: var(--text-dim); margin-bottom: 3rem; font-size: 1.25rem;">I am currently accepting new
+                    projects and technical consultations.</p>
+                <a href="mailto:support@goldsoccer.com" class="btn-main">Contact Studio</a>
+            </div>
+
+            <div class="logo" style="margin-bottom: 2rem;">Soi Emmanuel</div>
+            <div class="footer-links" style="margin-bottom: 3rem;">
+                <a href="https://soiemmanuel.github.io/gold_soccer_privacy_policy/">Gold Soccer Privacy</a>
+                <a href="https://github.com/soiemmanuel" target="_blank">GitHub</a>
+                <a href="#" target="_blank">LinkedIn</a>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.85rem;">© 2026 Soi Emmanuel App Studio. All rights reserved.
+            </p>
+            <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 1rem;"><a href="/app-ads.txt"
+                    style="color: inherit; text-decoration: none; opacity: 0.3;">AdMob Verified</a></p>
         </footer>
     </div>
 </body>
